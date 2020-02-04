@@ -1,28 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FieldRow from "../components/FieldRow";
 import Button from "../components/Button";
-
-const generator = rows =>
-  JSON.stringify(
-    Object.values(rows).reduce(
-      (current, { name, fields }) => ({
-        ...current,
-        [name]: fields[Math.floor(Math.random() * fields.length)]
-      }),
-      {}
-    ),
-    null,
-    2
-  );
+import PreviewObject from "../components/PreviewObject";
 
 const index = () => {
   const [rows, setRows] = useState({
     1: { name: "Field 1", fields: [] }
   });
-  const [example, setExample] = useState("");
-  useEffect(() => {
-    setExample(generator(rows));
-  }, [rows, setExample]);
+
   return (
     <div>
       <h1 css={{ fontFamily: "'Great Vibes', cursive" }}>RandomDB</h1>
@@ -60,12 +45,7 @@ const index = () => {
           1
         )}
       </h2>
-      <Button onClick={() => setExample(generator(rows))}>
-        Example Object
-      </Button>
-      <div>
-        <pre>{example}</pre>
-      </div>
+      <PreviewObject rows={rows} />
     </div>
   );
 };
