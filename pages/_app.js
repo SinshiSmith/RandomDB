@@ -11,7 +11,8 @@ const darkTheme = {
     primary: "#E2E2E2"
   },
   backgroundsColors: {
-    primary: "#282A2E"
+    primary: "#282A2E",
+    secondary: "#303236"
   }
 };
 
@@ -30,11 +31,28 @@ const App = ({ Component, pageProps }) => {
     setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
   }, []);
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider
+      theme={{
+        colors: {
+          danger: "#d3514d",
+          ...(isDarkMode ? darkTheme.colors : lightTheme.colors)
+        },
+        backgroundsColors: {
+          green: "#438f62",
+          ...(isDarkMode
+            ? darkTheme.backgroundsColors
+            : lightTheme.backgroundsColors)
+        }
+      }}
+    >
       <Global
         styles={({ colors, backgroundsColors }) =>
           breakpoints({
+            html: {
+              fontSize: "62.5%"
+            },
             body: {
+              fontSize: "1.6rem",
               margin: ["0 10px", "0px 30px"],
               color: colors.primary,
               background: backgroundsColors.primary
