@@ -8,7 +8,7 @@ const FieldRow = ({ setRow, removeRow }) => (
       type="text"
       placeholder="Field Name"
       onChange={e => {
-        setRow({ name: e.target.value });
+        setRow({ name: e.target.value.trim() });
       }}
     />
     <span css={{ margin: "0 10px" }}>:</span>
@@ -17,7 +17,12 @@ const FieldRow = ({ setRow, removeRow }) => (
       type="text"
       placeholder="type values here separated by ,"
       onChange={e => {
-        setRow({ fields: e.target.value.split(",") });
+        setRow({
+          fields: e.target.value
+            .split(",")
+            .filter(item => item.trim())
+            .map(item => item.trim())
+        });
       }}
     />
     <Button
