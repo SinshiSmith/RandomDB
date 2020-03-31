@@ -24,7 +24,7 @@
     "@emotion/core": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "facepaint": "^1.2.1",
-    "next": "^9.2.1",
+    "next": "^9.3.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "use-persisted-state": "^0.3.0"
